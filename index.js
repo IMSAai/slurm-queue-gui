@@ -12,15 +12,17 @@ function execute(command) {
         reject(standardError);
         return;
       }
-      resolve(standardOutput);
+      content += standardOutput;
     });
   });
 }
+//squeue -a -r -h -o %A,%V,%e,%r,%P,%N,%u
 async function main(){
         try{
           table = "<!DOCTYPE html><html><header>table, td, th {border: 1px solid black;}</header><body><table>";  
-          content = "JOB ID,SUBMISSION TIME,COMPLETION TIME,REASON FOR STATE,PARTITION,NODES,USER"
-          content += "17, 2021-03-08T00:58:29,2021-03-09T00:58:29, None, gpu-long, gpu1, dsingh";
+          content = "JOB ID,SUBMISSION TIME,COMPLETION TIME,REASON FOR STATE,PARTITION,NODES,USER";
+          execute('squeue -a -r -h -o %A,%V,%e,%r,%P,%N,%u');
+          //content += "17, 2021-03-08T00:58:29,2021-03-09T00:58:29, None, gpu-long, gpu1, dsingh";
           var rows = content.split("\n");
           var headers = rows[0].split(",");
           if(headers != null){
