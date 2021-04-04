@@ -1,4 +1,5 @@
 const childProcess = require("child_process");
+childProcess.config({nodeRequire: require});
 var content;
 var final;
 function execute(command) {
@@ -16,36 +17,24 @@ function execute(command) {
     });
   });
 }
-function arrayToJSON(arr){
-  var keys = arr[0];
-  var newArr = arr.slice(1, arr.length);
-
-  var formatted = [],
-  data = newArr,
-  cols = keys,
-  l = cols.length;
-  for(var i = 0; i<data.length; i++){
-    var d = data[i],
-    o={};
-      for(var j =- 0; j<l; j++)
-          o[cols[j]]=d[j];
-
-    formatted.push(o);
-  }
-  return formatted;
-}
 //squeue -a -r -h -o %A,%V,%e,%r,%P,%N,%u
 async function main(){
         try{
-          content = execute('squeue -a -r -h -o %A,%V,%e,%r,%P,%N,%u');
-          //content += "17,2021-03-08T00:58:29,2021-03-09T00:58:29,None,gpu-long,gpu1,dsingh";
-          var rows = content.split("\n");
-          for(var i = 0; i<rows.length; i++){
-            final[i] = rows[i].split(",");
+            execute('squeue -a -r -h -o %A,%V,%e,%r,%P,%N,%u');
+            //content += "17,2021-03-08T00:58:29,2021-03-09T00:58:29,None,gpu-long,gpu1,dsingh";
+            var rows = content.split("\n");
+            for(var i = 0; i<rows.length; i++){
+              final[i] = rows[i].split(",");
+            }
+            final = {
+              lines: []
+          };
+          for(var j = 0; j<rows.length; j++){
+              final.lines[i] = {jobID:final[i][0] + '',ST:final[i][1] + '',CT:final[i][2] + '', REASON:final[i][3] + '',PARTITION:final[i][4] + '',NODES:final[i][5] + '', USER:final[i][6] + ''};
           }
-          final = arrayToJSON(final);
-}catch(error){
-          console.error(error);
+          //something to make it in json form
+        }catch(error){
+            console.error(error);
         }
 }
 main();
