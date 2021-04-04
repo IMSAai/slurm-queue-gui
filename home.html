@@ -7,36 +7,49 @@
                 border: 1px solid black;
             }
         </style>
-        <script src="index.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
+        
     </header>
     <body>
-        <table>
-            <tr>
-                <th>JOB ID</th>
-                <th>SUBMISSION TIME</th>
-                <th>COMPLETION</th>
-                <th>TIME</th>
-                <th>REASON FOR STATE</th>
-                <th>PARTITION</th>
-                <th>NODES</th>
-                <th>USER</th>
-            </tr>
-            <script type = "text/x-handlebars-template">
-            {{#each final as item}}
-            <tr>
-                <td>item.[0]</td>
-                <td>item.[1]</td>
-                <td>item.[2]</td>
-                <td>item.[3]</td>
-                <td>item.[4]</td>
-                <td>item.[5]</td>
-                <td>item.[6]</td>
-                <td>item.[7]</td>
-            </tr>
-            {{/each}}
-            </script>
-        </table>
+        <div id = "table">
+            
+        </div>
+        <script id = "template" type = "text/x-handlebars-template">
+            <div>
+                <table>
+                    <tr>
+                        <th>JOB ID</th>
+                        <th>SUBMISSION TIME</th>
+                        <th>COMPLETION TIME</th>
+                        <th>REASON FOR STATE</th>
+                        <th>PARTITION</th>
+                        <th>NODES</th>
+                        <th>USER</th>
+                    </tr>
+                    {{#each lines}}
+                    <tr>
+                        <td>{{jobID}}</td>
+                        <td>{{ST}}</td>
+                        <td>{{CT}}</td>
+                        <td>{{REASON}}</td>
+                        <td>{{PARTITION}}</td>
+                        <td>{{NODES}}</td>
+                        <td>{{USER}}</td>
+                    </tr>
+                    {{/each}}
+                </table>
+            </div>
+        </script>
+
+        <script>
+            $(document).ready(function(){
+                var source = $("#template").html();
+                var template = Handlebars.compile(source);
+                var el_html = template(final);
+                $("#table").html(el_html);
+            })
+        </script>
     </body>
 </html>
