@@ -24,18 +24,18 @@ async function main(){
             //content += "17,2021-03-08T00:58:29,2021-03-09T00:58:29,None,gpu-long,gpu1,dsingh";
             var rows = content.split("\n");
             for(var i = 0; i<rows.length; i++){
-              final[i] = rows[i].split(",");
+              rows[i] = rows[i].split(",");
             }
             final = {
-              lines: []
-          };
-          for(var j = 0; j<rows.length; j++){
-              final.lines[i] = {jobID:final[i][0] + '',ST:final[i][1] + '',CT:final[i][2] + '', REASON:final[i][3] + '',PARTITION:final[i][4] + '',NODES:final[i][5] + '', USER:final[i][6] + ''};
-          }
-          //something to make it in json form
-        }catch(error){
-            console.error(error);
-        }
+                lines: []
+            };
+            for(var i = 0; i<rows.length; i++){
+                final.lines[i] = {jobID:rows[i][0] + '',ST:rows[i][1] + '',CT:rows[i][2] + '', REASON:rows[i][3] + '',PARTITION:rows[i][4] + '',NODES:rows[i][5] + '', USER:rows[i][6] + ''};
+            }
+            //something to make it in json form
+            }catch(error){
+                console.error(error);
+            }
 }
 main();
 var http = require('http');
