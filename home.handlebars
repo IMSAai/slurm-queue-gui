@@ -8,12 +8,10 @@
                 border: 1px solid black;
             }
         </style>
-        <script src="script.js"></script>
+        <script src="index.js"></script>
     </header>
     <body>
             <div id = "table"></div>
-
-            <script id = "template" type = "text/x-handlebars-template">
                 <div>
                     <table>
                         <tr>
@@ -38,15 +36,5 @@
                         {{/each}}
                     </table>
                 </div>
-            </script>
-
-            <script>
-                /*$(document).ready(function(){
-                    var source = $("#template").html();
-                    var template = Handlebars.compile(source);
-                    var el_html = template(final);
-                    $("#table").html(el_html);
-                })*/
-            </script>
     </body>
 </html>
