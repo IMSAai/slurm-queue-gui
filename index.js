@@ -64,7 +64,7 @@ app.get('/', (req, res) => {
             for(var i = 0; i<rows.length; i++){
                 final.lines[i] = {jobID:rows[i][0] + '',ST:rows[i][1] + '',CT:rows[i][2] + '', REASON:rows[i][3] + '',PARTITION:rows[i][4] + '',NODES:rows[i][5] + '', USER:rows[i][6] + ''};
             }
-           }
+           }else{console.log("lol");}
           }catch(error){
               console.error(error);
           }
