@@ -3,6 +3,7 @@ const fs = require('fs');
 const handlebars = require('handlebars');
 const express = require('express');
 const app = express();
+const port = 8080;
 var content;
 var final;
 function execute(command) {
@@ -77,5 +78,7 @@ app.get('/', (req, res) => {
             console.log(err);
           }
         });
-}).listen(8080);
-console.log('Server started on localhost:9090; press Ctrl-C to terminate...!');
+})
+app.listen(port, () => {
+  console.log('Server started on localhost:9090; press Ctrl-C to terminate...!');
+};
