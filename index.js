@@ -38,13 +38,15 @@ app.get('/', (req, res) => {
         var final = {
             lines: []
         };
-        var content = "";
-        exec('squeue -a -r -h -o %A,%V,%e,%r,%P,%N,%u', (err, stdout, stderr) => console.log(stdout));
+        exec('squeue -a -r -h -o %A,%V,%e,%r,%P,%N,%u', (err, stdout, stderr) => {
+            console.log(stdout);
+            var content = stdout;
+        });
         let rows = content.split("\n");
-        for(var i = 0; i<rows.length; i++){
+        for(var i = 0; i<rows.length-1; i++){
             rows[i] = rows[i].split(",");
         }
-        for(var i = 0; i<rows.length; i++){
+        for(var i = 0; i<rows.length-1; i++){
             final.lines[i] = {jobID:rows[i][0] + '',ST:rows[i][1] + '',CT:rows[i][2] + '', REASON:rows[i][3] + '',PARTITION:rows[i][4] + '',NODES:rows[i][5] + '', USER:rows[i][6] + ''};
         }
         res.writeHead(200, {'Content-Type': 'text/html'});
