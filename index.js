@@ -3,8 +3,7 @@ const fs = require('fs');
 const handlebars = require('handlebars');
 const express = require('express');
 const app = express();
-var content;
-var final;
+const port = 8080;
 function execute(command, callback){
     exec(command, function(error, stdout, stderr){ callback(stdout); });
 };
@@ -36,9 +35,10 @@ async function main(){
           }
 }
 app.get('/', (req, res) => {
-        final = {
+        var final = {
             lines: []
         };
+        var content = "";
         exec('squeue -a -r -h -o %A,%V,%e,%r,%P,%N,%u', (err, stdout, stderr) => console.log(stdout));
         let rows = content.split("\n");
         for(var i = 0; i<rows.length; i++){
@@ -48,7 +48,6 @@ app.get('/', (req, res) => {
             final.lines[i] = {jobID:rows[i][0] + '',ST:rows[i][1] + '',CT:rows[i][2] + '', REASON:rows[i][3] + '',PARTITION:rows[i][4] + '',NODES:rows[i][5] + '', USER:rows[i][6] + ''};
         }
         res.writeHead(200, {'Content-Type': 'text/html'});
-        res.writeHead(200, {'X-Content-Type-Options:': 'text/html'});
         fs.readFile('home.handlebars', function(err,data){
           if(!err){
             var source = data.toString();
