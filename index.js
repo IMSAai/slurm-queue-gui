@@ -27,6 +27,9 @@ app.get('/api/', (req, res) => {
           if (final.lines[i].CT === "N/A") {
             final.lines[i].CT === ""
           }
+          if (final.lines[i].NODES === "") {
+            final.lines[i].NODES === "None"
+          }
       }
       res.json(final)
   });
