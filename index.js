@@ -25,10 +25,10 @@ app.get('/api/', (req, res) => {
       for(let i = 0; i<rows.length-1; i++){
           final.lines[i] = {jobID:rows[i][0] + '',ST:rows[i][1] + '',CT:rows[i][2] + '', REASON:rows[i][3] + '',PARTITION:rows[i][4] + '',NODES:rows[i][5] + '', USER:rows[i][6] + '', STATE:titleCase(rows[i][7] + ''), NAME: rows[i][8] + ''};
           if (final.lines[i].CT === "N/A") {
-            final.lines[i].CT === ""
+            final.lines[i].CT = ""
           }
           if (final.lines[i].NODES === "") {
-            final.lines[i].NODES === "None"
+            final.lines[i].NODES = "None"
           }
       }
       res.json(final)
