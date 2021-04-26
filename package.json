@@ -1,0 +1,8 @@
+{
+  "name": "slurm-queue-gui",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/epochml/slurm-queue-gui",
+  "author": "Rohan Jain <rjain@imsa.edu>",
+  "license": "BSD-3-Clause"
+}
