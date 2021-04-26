@@ -4,5 +4,8 @@
   "main": "index.js",
   "repository": "https://github.com/epochml/slurm-queue-gui",
   "author": "Rohan Jain <rjain@imsa.edu>",
-  "license": "BSD-3-Clause"
+  "license": "BSD-3-Clause",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
