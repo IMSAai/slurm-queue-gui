@@ -1,0 +1,12 @@
+[Unit]
+Description=Slurm Queue GUI
+After=network.target
+
+[Service]
+ExecStart=/path/to/node path/to/git/index.js #uhhh idk
+Restart=always
+WorkingDirectory=/slurm-queue-gui #can check on cluster
+User=rjain #epoch?
+
+[Install]
+WantedBy=multi-user.target
